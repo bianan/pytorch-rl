@@ -22,25 +22,27 @@ CONFIGS = [
 [ "dqn",      "atari",     "BreakoutDeterministic-v4", "dqn-cnn",      "sequential"],  # 4
 [ "a3c",      "atari",     "PongDeterministic-v4",     "a3c-cnn-dis",  "none"      ],  # 5
 [ "a3c",      "gym",       "InvertedPendulum-v1",      "a3c-mlp-con",  "none"      ],  # 6
+
 [ "acer",     "gym",       "CartPole-v0",              "acer-mlp-dis", "episodic"  ],  # 7  # NOTE: acer under testing
 [ "acer",     "atari",     "Boxing-v0",                "acer-cnn-dis", "episodic"  ]   # 8  # NOTE: acer under testing
 ]
 
 class Params(object):   # NOTE: shared across all modules
     def __init__(self):
-        self.verbose     = 0            # 0(warning) | 1(info) | 2(debug)
+        self.verbose     = 1           # 0(warning) | 1(info) | 2(debug)
 
         # training signature
-        self.machine     = "aisgpu8"    # "machine_id"
-        self.timestamp   = "17082701"   # "yymmdd##"
+        self.machine     = "lab-ubuntu"    # "machine_id"
+        self.timestamp   = "180405"   # "yymmdd##"
+        
         # training configuration
         self.mode        = 1            # 1(train) | 2(test model_file)
-        self.config      = 7
+        self.config      = 2
 
         self.seed        = 123
         self.render      = False        # whether render the window from the original envs or not
         self.visualize   = True         # whether do online plotting and stuff or not
-        self.save_best   = False        # save model w/ highest reward if True, otherwise always save the latest model
+        self.save_best   = True        # save model w/ highest reward if True, otherwise always save the latest model
 
         self.agent_type, self.env_type, self.game, self.model_type, self.memory_type = CONFIGS[self.config]
 
@@ -66,7 +68,9 @@ class Params(object):   # NOTE: shared across all modules
                 self.enable_continuous  = True
             else:
                 self.enable_continuous  = False
-            self.num_processes      = 16
+                
+                
+            self.num_processes      = 4
 
             self.hist_len           = 1
             self.hidden_dim         = 128

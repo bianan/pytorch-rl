@@ -7,3 +7,15 @@ optims/*.pyc
 utils/*.pyc
 models/*
 logs/*
+
+.project
+.pydevproject
+.settings/
+core/__pycache__/
+core/agents/__pycache__/
+core/envs/__pycache__/
+core/memories/__pycache__/
+core/models/__pycache__/
+optims/__pycache__/
+utils/__pycache__/
+
